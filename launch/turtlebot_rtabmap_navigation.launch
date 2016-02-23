@@ -1,7 +1,7 @@
 <!-- Turtlebot navigation simulation with RTAB-Map -->
 <launch>
   <!-- ******* Loading the saved Map ******* -->
-  <arg name="map_file" default="$(env TURTLEBOT_GAZEBO_MAP_FILE)"/>
+  <arg name="map_file" default="$(find turtlebot_rtabmap_simulation)/maps/playground.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <arg name="database_path"     default="rtabmap.db"/>
