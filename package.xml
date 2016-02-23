@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<package>
+  <name>turtlebot_rtabmap_simulation</name>
+  <version>0.0.0</version>
+  <description>The Turtlebot package with RTAB-Map for Mapping and Navigation</description>
+  
+  <author>Mahsa Parsapour</author>
+  <maintainer email="mahsa.parsapour@gmail.com">Mahsa Parsapour</maintainer> >
+
+  <license>BSD</license>
+
+  <url type="bugtracker">https://github.com/MahsaP/turtlebot_rtabmap_simulation/issues</url>
+  <url type="repository">https://github.com/MahsaP/turtlebot_rtabmap_simulation</url>
+
+<buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>roscpp</run_depend>
+
+  <run_depend>stage_ros</run_depend>
+  <run_depend>navigation</run_depend>
+  <run_depend>turtlebot_bringup</run_depend>
+  <run_depend>turtlebot_navigation</run_depend>
+  <run_depend>yocs_virtual_sensor</run_depend>
+  <run_depend>yocs_velocity_smoother</run_depend>
+
+  <run_depend>zeroconf_avahi</run_depend>
+  <run_depend>yocs_cmd_vel_mux</run_depend>
+  <run_depend>kobuki_capabilities</run_depend>
+  <run_depend>kobuki_node</run_depend>
+  <run_depend>kobuki_bumper2pc</run_depend>
+  <run_depend>kobuki_safety_controller</run_depend>
+  <run_depend>create_node</run_depend>
+  <run_depend>turtlebot_capabilities</run_depend>
+  <run_depend>turtlebot_description</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>robot_pose_ekf</run_depend>
+  <run_depend>diagnostic_aggregator</run_depend>
+  <run_depend>openni2_launch</run_depend>
+  <run_depend>freenect_launch</run_depend>
+  <run_depend>laptop_battery_monitor</run_depend>
+  <run_depend>rocon_app_manager</run_depend>
+  <run_depend>rocon_bubble_icons</run_depend>
+  <run_depend>depthimage_to_laserscan</run_depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+  </export>
+  
+</package>
