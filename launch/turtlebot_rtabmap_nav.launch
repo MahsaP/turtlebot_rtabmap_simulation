@@ -1,0 +1,47 @@
+<!-- Turtlebot navigation simulation with RTAB-Map -->
+<launch>
+
+  <arg name="database_path"     default="rtabmap.db"/>
+  <arg name="localization"      default="true"/>
+
+  <!-- Mapping -->
+  <group ns="rtabmap">
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen">
+      <param name="database_path"       type="string" value="$(arg database_path)"/>
+      <param name="frame_id"            type="string" value="base_footprint"/>
+      <param name="odom_frame_id"       type="string" value="odom"/>
+      <param name="subscribe_laserScan" type="bool"   value="true"/>
+
+      <!-- inputs -->
+      <remap from="scan"            to="/scan"/>
+      <remap from="rgb/image"       to="/camera/rgb/image_raw"/>
+      <remap from="depth/image"     to="/camera/depth/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+
+      <!-- outputs -->
+          <remap from="grid_map" to="/map"/> <!-- input for move_base costmap -->
+
+      <!-- RTAB-Map parameters -->
+      <param name="RGBD/LocalLoopDetectionSpace" type="string" value="true"/>
+      <param name="RGBD/OptimizeSlam2D"          type="string" value="true"/>      
+      <param name="Kp/MaxDepth"                  type="string" value="4.0"/>
+      <param name="Kp/DetectorStrategy"          type="string" value="6"/> <!-- GFTT/BRIEF -->
+      <param name="GFTT/MinDistance"             type="string" value="5"/>
+      <param name="LccIcp/Type"                  type="string" value="2"/> <!-- ICP 2D -->
+      <param name="LccIcp2/CorrespondenceRatio"  type="string" value="0.1"/> 
+
+      <!-- localization mode -->
+      <param     if="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="false"/>
+      <param unless="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="true"/>
+      <param name="Mem/InitWMWithAllNodes" type="string" value="$(arg localization)"/> 
+    </node>
+  </group>
+
+  <!-- ******* Navigation - Move Base ******* -->
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
+
+
+  <!-- ******* Visualization of the Turtlebot on Rviz ******* -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot_rviz_launchers)/rviz/navigation.rviz"/>
+
+</launch>
